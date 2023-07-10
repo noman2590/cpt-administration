@@ -1,0 +1,76 @@
+.cpta-post-box,
+.cpta-list-box {
+    margin-top: 15px;
+}
+
+.cpta-post-box h2.ui-sortable-handle {
+    margin: 12px;
+}
+
+.cpta-post-box table {
+    width: 100%;
+}
+
+.cpta-post-box table tr:first-child td {
+    padding: 0;
+}
+
+.cpta-post-box table tr td {
+    padding-top: 15px;
+    vertical-align: top;
+}
+
+.cpta-post-box table tr td:first-child {
+    width: 20%;
+}
+
+.cpta-post-box table input[type=text],
+.cpta-post-box table input[type=number],
+.cpta-post-box table textarea {
+    width: 100%;
+}
+
+.cpta-post-box table input#menu_icon {
+    margin-bottom: 5px;
+}
+
+.cpta-post-box table tr td:first-child label {
+    font-weight: 500;
+}
+
+.cpta-post-box table tr td small,
+.cpta-post-box table tr td:first-child label span {  
+    color: red;
+}
+
+.cpta-post-box table tr td .cpta-red-border {  
+    border-color: red;
+}
+
+.cpta-post-box table tr td .cpta-alert-success,
+.cpta-listing-page .cpta-delete-success {
+    background-color: #a9eea9;
+    border: 1px solid green;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.cpta-post-box table tr td .cpta-alert-fail,
+.cpta-listing-page .cpta-delete-fail {
+    background-color: #dda8a8;
+    border: 1px solid red;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.cpta-listing-page .alert {
+    margin-top: 10px;
+}
+
+.cpta-hidden {
+    display: none;
+}
+
+.cpta-list-box table th {
+    font-weight: 600;
+}
