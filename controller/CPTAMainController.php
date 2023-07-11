@@ -9,8 +9,10 @@ class CPTAMainController
         register_activation_hook( CPTA_PLUGIN_BASENAME, array( $this, 'cpta_activation_hook' ));
         add_action('init', array($this, 'create_custom_post_type'));
         add_action('admin_menu', array( $this, 'cpta_admin_menu' ));
-        add_action('admin_menu', array( $this, 'cpta_register_custom_admin_page' ));
+        add_action('admin_menu', array( $this, 'cpta_register_add_new_page' ));
+        add_action('admin_menu', array( $this, 'cpta_register_edit_page' ));
         add_action('admin_enqueue_scripts', array( $this, 'cpta_enqueue_admin_scripts'));
+        // add_filter('admin_title', array( $this, 'submenu_admin_title'), 10, 2);
     }
 
     public function cpta_activation_hook () {
@@ -52,7 +54,7 @@ class CPTAMainController
         );
     }
 
-    function cpta_register_custom_admin_page() {
+    function cpta_register_add_new_page() {
         add_submenu_page(
             'cpt-list',
             __('Add New Post Type', 'add-new-cpt'),
@@ -62,6 +64,27 @@ class CPTAMainController
             'CPTAListController::add_new_cpt'
         );
     }
+
+    function cpta_register_edit_page () {
+        add_submenu_page(
+            'cpt-list',
+            __('Edit Post Type', 'edit-cpt'),
+            __('Edit Post Type', 'edit-cpt'),
+            'manage_options',
+            'edit-cpt',
+            'CPTAListController::edit_cpt'
+        );
+    }
+    
+    // function submenu_admin_title() {
+    //     global $pagenow;
+
+    //     if ($pagenow === 'admin.php' && $_GET['page'] === 'edit-cpt') {
+    //         $admin_title = 'Edit Custom Post Type ' . get_admin_page_title();
+    //     }
+
+    //     return $admin_title;
+    // }
 
     function cpta_enqueue_admin_scripts() {
         wp_enqueue_style( 'cpta-style', CPTA_PLUGIN_URL . '/lib/assets/css/style.css' );

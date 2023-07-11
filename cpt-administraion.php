@@ -25,7 +25,6 @@ define( 'CPTA_LIB_PATH', CPTA_PLUGIN_PATH . DIRECTORY_SEPARATOR . 'lib' );
 
 require_once CPTA_CONTROLLER_PATH . DIRECTORY_SEPARATOR . 'CPTAMainController.php';
 require_once CPTA_CONTROLLER_PATH . DIRECTORY_SEPARATOR . 'CPTAListController.php';
-require_once CPTA_CONTROLLER_PATH . DIRECTORY_SEPARATOR . 'CustomPostController.php';
 
 require_once CPTA_PLUGIN_PATH . DIRECTORY_SEPARATOR . 'Request.php';
 

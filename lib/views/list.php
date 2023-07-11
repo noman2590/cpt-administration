@@ -1,18 +1,18 @@
 <?php 
     session_start();
-    $cpta_delete_success = $_SESSION['cpta_delete_success'] ?? false;
-    $cpta_delete_fail = $_SESSION['cpta_delete_fail'] ?? false;
-    unset($_SESSION['cpta_delete_success']);
-    unset($_SESSION['cpta_delete_fail']);
+    $form_success = $_SESSION['cpta_form_success'] ?? false;
+    $form_fail = $_SESSION['cpta_form_fail'] ?? false;
+    unset($_SESSION['cpta_form_success']);
+    unset($_SESSION['cpta_form_fail']);
 ?>
 <div class="wrap cpta-listing-page">
     <h1 class="wp-heading-inline">CPT Listing</h1>
     <a href="<?php echo admin_url()?>admin.php?page=add-new-cpt" class="page-title-action">Add New Post Type</a>
-    <div class="alert cpta-delete-success <?php echo ($cpta_delete_success) ? '' : 'cpta-hidden' ?>">
-        <?php echo ($cpta_delete_success) ? $cpta_delete_success : '' ?>
+    <div class="alert cpta-alert-success <?php echo ($form_success) ? '' : 'cpta-hidden' ?>">
+        <?php echo ($form_success) ? $form_success : '' ?>
     </div>
-    <div class="alert cpta-delete-fail <?php echo ($cpta_delete_fail) ? '' : 'cpta-hidden' ?>">
-        <?php echo ($cpta_delete_fail) ? $cpta_delete_fail : '' ?>
+    <div class="alert cpta-alert-fail <?php echo ($form_fail) ? '' : 'cpta-hidden' ?>">
+        <?php echo ($form_fail) ? $form_fail : '' ?>
     </div>
 	<div class="bg-white cpta-list-box">
 		<div class="ai1wm-left">
@@ -38,10 +38,10 @@
                         <td><?php echo $value->plural ?></td>
                         <td><?php echo $value->menu_position ?></td>
                         <td><i class="dashicons <?php echo $value->menu_icon ?>"></i></td>
-                        <td>
-                            <a href=""><i class="dashicons dashicons-edit"></i></a>
+                        <td class="action">
+                            <a href="<?php echo admin_url()?>admin.php?page=edit-cpt&id=<?php echo $value->id ?>"><i class="dashicons dashicons-edit"></i></a>
                             <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-                                <i class="dashicons dashicons-trash cpta-delete-btn"></i>
+                                <i class="dashicons dashicons-trash cpta-delete-btn" title="Delete post type"></i>
                                 <input type="hidden" name="action" value="delete_custom_posttype">
                                 <input type="hidden" name="id" value="<?php echo $value->id; ?>">
                                 <input type="hidden" name="slug" value="<?php echo $value->slug; ?>">

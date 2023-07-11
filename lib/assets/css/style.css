@@ -48,7 +48,7 @@
 }
 
 .cpta-post-box table tr td .cpta-alert-success,
-.cpta-listing-page .cpta-delete-success {
+.cpta-listing-page .cpta-alert-success {
     background-color: #a9eea9;
     border: 1px solid green;
     padding: 10px;
@@ -56,7 +56,7 @@
 }
 
 .cpta-post-box table tr td .cpta-alert-fail,
-.cpta-listing-page .cpta-delete-fail {
+.cpta-listing-page .cpta-alert-fail {
     background-color: #dda8a8;
     border: 1px solid red;
     padding: 10px;
@@ -73,4 +73,18 @@
 
 .cpta-list-box table th {
     font-weight: 600;
+}
+
+.cpta-list-box table td.action a,
+.cpta-list-box table td.action form {
+    display: inline-block;
+}
+
+.cpta-list-box table td.action form .dashicons {
+    cursor: pointer;
+    color: #2271b1;
+}
+
+.toplevel_page_cpt-list ul.wp-submenu li:last-child {
+    display: none;
 }
