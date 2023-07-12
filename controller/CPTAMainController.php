@@ -20,20 +20,22 @@ class CPTAMainController
 
         $charset_collate = $wpdb->get_charset_collate();
         $table_name = $wpdb->prefix . 'cpta_post_types';
-        $sql = "CREATE TABLE  $table_name (
-            `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, 
-            `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-            `singular` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-            `plural` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-            `menu_icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-            `menu_position` bigint(20) UNSIGNED DEFAULT NULL,
-            `supports` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-            `taxonomies` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-            `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-            `updated_at` timestamp NULL DEFAULT NULL,
-            PRIMARY KEY  (id)
-        ) $charset_collate;";
-        dbDelta($sql);
+        if ( $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name ) ) !== $table_name ) {
+            $sql = "CREATE TABLE  $table_name (
+                `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, 
+                `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                `singular` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                `plural` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                `menu_icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                `menu_position` bigint(20) UNSIGNED DEFAULT NULL,
+                `supports` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                `taxonomies` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                `updated_at` timestamp NULL DEFAULT NULL,
+                PRIMARY KEY  (id)
+            ) $charset_collate;";
+            dbDelta($sql);
+        }
     }
 
     public static function cpta_set_query_vars ( $args )
@@ -131,7 +133,7 @@ class CPTAMainController
                         'show_in_menu'        => true,
                         'show_in_nav_menus'   => true,
                         'show_in_admin_bar'   => true,
-                        'menu_position'       => $item->menu_position,
+                        'menu_position'       => (int) $item->menu_position,
                         'menu_icon'           => $item->menu_icon,
                         'can_export'          => true,
                         'exclude_from_search' => false,
