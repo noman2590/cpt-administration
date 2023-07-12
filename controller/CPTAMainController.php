@@ -12,7 +12,6 @@ class CPTAMainController
         add_action('admin_menu', array( $this, 'cpta_register_add_new_page' ));
         add_action('admin_menu', array( $this, 'cpta_register_edit_page' ));
         add_action('admin_enqueue_scripts', array( $this, 'cpta_enqueue_admin_scripts'));
-        // add_filter('admin_title', array( $this, 'submenu_admin_title'), 10, 2);
     }
 
     public function cpta_activation_hook () {
@@ -77,16 +76,6 @@ class CPTAMainController
             'CPTAListController::edit_cpt'
         );
     }
-    
-    // function submenu_admin_title() {
-    //     global $pagenow;
-
-    //     if ($pagenow === 'admin.php' && $_GET['page'] === 'edit-cpt') {
-    //         $admin_title = 'Edit Custom Post Type ' . get_admin_page_title();
-    //     }
-
-    //     return $admin_title;
-    // }
 
     function cpta_enqueue_admin_scripts() {
         wp_enqueue_style( 'cpta-style', CPTA_PLUGIN_URL . '/lib/assets/css/style.css' );
@@ -94,7 +83,6 @@ class CPTAMainController
         wp_enqueue_style( 'dashicons-css', CPTA_PLUGIN_URL . '/lib/assets/css/dashicons-picker.css' );
         wp_enqueue_script( 'dashicons-picker-js', CPTA_PLUGIN_URL . '/lib/assets/js/dashicons-picker.js' );
     }
-
 
     function create_custom_post_type() {
 
