@@ -4,8 +4,30 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
     die;
 }
 
-// drop database tables
 global $wpdb;
-$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}cpta_post_types" );
+$table = $wpdb->prefix . 'cpta_post_types';
+
+$results = $wpdb->get_results("SELECT * FROM $table");
+if( !empty($results) ) {
+    foreach($results as $item) {
+        $args = array(
+            'post_type' => $item->slug,
+            'posts_per_page' => -1,
+        );
+        
+        $query = new WP_Query($args);
+        
+        if ($query->have_posts()) {
+            while ($query->have_posts()) {
+                $query->the_post();
+                wp_delete_post(get_the_ID(), true);
+            }
+        }
+        wp_reset_postdata();
+    }
+}
+
+// drop database table
+$wpdb->query( "DROP TABLE IF EXISTS {$table}" );
 
 ?>
