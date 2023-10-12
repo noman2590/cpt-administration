@@ -5,7 +5,6 @@ function handle_custom_form_submission() {
     // Verify the nonce for security
     if (isset($_POST['handle_custom_form_nonce']) && wp_verify_nonce($_POST['handle_custom_form_nonce'], 'handle_custom_form_action')) {
 
-        session_start();
         global $wpdb;
         $table = $wpdb->prefix . 'cpta_post_types';
         $post_slug = $_POST['slug'];
@@ -39,19 +38,22 @@ function handle_custom_form_submission() {
         );
 
         if (count($errors) > 0) {
-            $_SESSION['cpta_form_err'] = $errors;
-            $_SESSION['cpta_form_data'] = $data;
+            set_transient('cpta_form_error', $errors, 60);
+            set_transient('cpta_form_data', $data, 60);
+            wp_redirect(admin_url('admin.php?page=add-new-cpt'));
         }
         else {
             
             $wpdb->insert($table, $data);
             $entry_id = $wpdb->insert_id;
             if( $entry_id ) {
-                $_SESSION['cpta_form_success'] = 'Post type created successfully' ?? false;
+                $message = 'Post type created successfully' ?? false;
+                set_transient('cpta_form_success', $message, 60);
                 wp_redirect(admin_url() . 'admin.php?page=cpt-list');
             }
             else {
-                $_SESSION['cpta_form_fail'] = 'Failed to create post type! please try again' ?? false;
+                $message = 'Failed to create post type! please try again' ?? false;
+                set_transient('cpta_form_fail', $message, 60);
                 wp_redirect(admin_url('admin.php?page=add-new-cpt'));
             }
         }
@@ -67,7 +69,6 @@ function delete_custom_posttype_by_id() {
     if (isset($_POST['delete_custom_posttype_nonce']) && wp_verify_nonce($_POST['delete_custom_posttype_nonce'], 'delete_custom_posttype_action')) {
     
         global $wpdb;
-        session_start();
 
         $table = $wpdb->prefix . 'cpta_post_types';
         $post_type_slug = $_POST['slug'];
@@ -81,9 +82,11 @@ function delete_custom_posttype_by_id() {
         $result = $wpdb->delete($table, array('id' => $post_type_id));
 
         if ($result !== false) {
-            $_SESSION['cpta_form_success'] = 'Post type deleted successfully' ?? false;
+            $message = 'Post type deleted successfully' ?? false;
+            set_transient('cpta_form_success', $message, 60);
         } else {
-            $_SESSION['cpta_form_fail'] = 'Failed to delete the post type.' ?? false;
+            $message = 'Failed to delete the post type.' ?? false;
+            set_transient('cpta_form_fail', $message, 60);
         }
         wp_redirect(admin_url() . 'admin.php?page=cpt-list');
         exit;
@@ -96,7 +99,6 @@ function handle_cpt_edit_single_posttype() {
     
     // Verify the nonce for security
     if (isset($_POST['handle_cpt_edit_nonce']) && wp_verify_nonce($_POST['handle_cpt_edit_nonce'], 'handle_cpt_edit_action')) {
-        session_start();
         
         global $wpdb;
         $table = $wpdb->prefix . 'cpta_post_types';
@@ -105,8 +107,6 @@ function handle_cpt_edit_single_posttype() {
         $old_slug = $_POST['old_slug'];
         $pt_id = $_POST['id'];
         $results = $wpdb->get_results("SELECT * FROM $table WHERE `slug` = '$pt_slug' AND `id` != $pt_id");
-        
-        // exit;
         
         $errors = array();
         if ( empty($pt_slug) ) {
@@ -139,8 +139,9 @@ function handle_cpt_edit_single_posttype() {
         );
 
         if (count($errors) > 0) {
-            $_SESSION['cpta_form_err'] = $errors;
-            $_SESSION['cpta_form_data'] = $data;
+            set_transient('cpta_form_error', $errors, 60);
+            set_transient('cpta_form_data', $data, 60);
+            wp_redirect(admin_url('admin.php?page=edit-cpt&id=' . $pt_id));
         }
         else {
 
@@ -153,11 +154,13 @@ function handle_cpt_edit_single_posttype() {
                     $post_where = array( 'post_type' => $old_slug );
                     $wpdb->update( $post_table, $post_data, $post_where);
                 }
-                $_SESSION['cpta_form_success'] = 'Post type updated successfully' ?? false;
+                $message = 'Post type updated successfully' ?? false;
+                set_transient('cpta_form_success', $message, 60);
                 wp_redirect(admin_url() . 'admin.php?page=cpt-list');
             }
             else {
-                $_SESSION['cpta_form_fail'] = 'Failed to update post type! please try again' ?? false;
+                $message = 'Failed to update post type! please try again' ?? false;
+                set_transient('cpta_form_fail', $message, 60);
                 wp_redirect(admin_url('admin.php?page=edit-cpt&id=' . $pt_id));
             }
         }

@@ -1,19 +1,19 @@
+<?php
+    $errors = get_transient('cpta_form_error') ?? array();
+    $form_data = get_transient('cpta_form_data') ?? array();
+    $form_success = get_transient('cpta_form_success') ?? false;
+    $form_fail = get_transient('cpta_form_fail') ?? false; 
+
+    delete_transient('cpta_form_error');
+    delete_transient('cpta_form_data');
+    delete_transient('cpta_form_fail');
+    delete_transient('cpta_form_success');
+
+    $supports = (isset($form_data['supports'])) ? explode(', ', $form_data['supports']) : array();
+    $taxonomies = (isset($form_data['taxonomies'])) ? explode(', ', $form_data['taxonomies']) : array();
+
+?>
 <div class="wrap">
-    <?php
-        session_start();
-        $errors = $_SESSION['cpta_form_err'] ?? array();
-        $form_data = $_SESSION['cpta_form_data'] ?? array();
-        $form_success = $_SESSION['cpta_form_success'] ?? false;
-        $form_fail = $_SESSION['cpta_form_fail'] ?? false;
-        unset($_SESSION['cpta_form_success']); 
-        unset($_SESSION['cpta_form_fail']); 
-        unset($_SESSION['cpta_form_err']); 
-        unset($_SESSION['cpta_form_data']); 
-
-        $supports = (isset($form_data['supports'])) ? explode(', ', $form_data['supports']) : array();
-        $taxonomies = (isset($form_data['taxonomies'])) ? explode(', ', $form_data['taxonomies']) : array();
-
-    ?>
     <h1 class="wp-heading-inline">Add New Post Type</h1>
     
 

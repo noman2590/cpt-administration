@@ -1,9 +1,8 @@
-<?php 
-    session_start();
-    $form_success = $_SESSION['cpta_form_success'] ?? false;
-    $form_fail = $_SESSION['cpta_form_fail'] ?? false;
-    unset($_SESSION['cpta_form_success']);
-    unset($_SESSION['cpta_form_fail']);
+<?php
+    $form_success = get_transient('cpta_form_success') ?? false;
+    $form_fail = get_transient('cpta_form_fail') ?? false;
+    delete_transient('cpta_form_success');
+    delete_transient('cpta_form_fail');
 ?>
 <div class="wrap cpta-listing-page">
     <div class="wpbody-content">
