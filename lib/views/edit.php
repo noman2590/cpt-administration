@@ -1,13 +1,16 @@
 <?php
-    $errors = get_transient('cpta_form_error') ?? array();
-    $form_data = get_transient('cpta_form_data') ?? array();
-    $form_success = get_transient('cpta_form_success') ?? false;
-    $form_fail = get_transient('cpta_form_fail') ?? false; 
 
-    delete_transient('cpta_form_error');
-    delete_transient('cpta_form_data');
-    delete_transient('cpta_form_fail');
-    delete_transient('cpta_form_success');
+    if ( ! defined( 'ABSPATH' ) ) exit;
+
+    $errors = get_transient('wpcpt_form_error') ?? array();
+    $form_data = get_transient('wpcpt_form_data') ?? array();
+    $form_success = get_transient('wpcpt_form_success') ?? false;
+    $form_fail = get_transient('wpcpt_form_fail') ?? false; 
+
+    delete_transient('wpcpt_form_error');
+    delete_transient('wpcpt_form_data');
+    delete_transient('wpcpt_form_fail');
+    delete_transient('wpcpt_form_success');
 
     $single = $data['data'][0];
     $old_supports = (isset($single->supports)) ? explode(', ', $single->supports) : array();
@@ -20,8 +23,7 @@
 <div class="wrap">
     <h1 class="wp-heading-inline">Edit Post Type</h1>
     
-
-    <div class="postbox cpta-post-box">
+    <div class="postbox wpcpt-post-box">
         <div class="postbox-header">
             <h2 class="ui-sortable-handle">Post Type Settings</h2>
         </div>
@@ -32,11 +34,11 @@
                         <table>
                             <tr>
                                 <td colspan="2">
-                                    <div class="alert cpta-alert-success <?php echo ($form_success) ? '' : 'cpta-hidden' ?>">
-                                        <?php echo ($form_success) ? $form_success : '' ?>
+                                    <div class="alert wpcpt-alert-success <?php echo ($form_success) ? '' : 'wpcpt-hidden' ?>">
+                                        <?php echo ($form_success) ? esc_attr($form_success) : '' ?>
                                     </div>
-                                    <div class="alert cpta-alert-fail <?php echo ($form_fail) ? '' : 'cpta-hidden' ?>">
-                                        <?php echo ($form_fail) ? $form_fail : '' ?>
+                                    <div class="alert wpcpt-alert-fail <?php echo ($form_fail) ? '' : 'wpcpt-hidden' ?>">
+                                        <?php echo ($form_fail) ? esc_attr($form_fail) : '' ?>
                                     </div>
                                 </td>
                             </tr>
@@ -45,10 +47,10 @@
                                 <td>
                                     <input 
                                         type="text" name="slug" id="slug" 
-                                        class="<?php echo (isset($errors['cpta_slug_err'])) ? 'cpta-red-border' : '';?>" 
-                                        value="<?php echo (isset($form_data['slug'])) ? $form_data['slug'] : $data['data'][0]->slug;?>" 
+                                        class="<?php echo (isset($errors['wpcpt_slug_err'])) ? 'wpcpt-red-border' : '';?>" 
+                                        value="<?php echo (isset($form_data['slug'])) ? esc_attr($form_data['slug']) : esc_attr($data['data'][0]->slug);?>" 
                                         placeholder="The post type name/slug. Used for various queries." />
-                                    <?php echo (isset($errors['cpta_slug_err'])) ? '<small>' . $errors['cpta_slug_err'] . '</small>' : ''; ?>
+                                    <?php echo (isset($errors['wpcpt_slug_err'])) ? '<small>' . esc_attr($errors['wpcpt_slug_err']) . '</small>' : ''; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -56,10 +58,10 @@
                                 <td>
                                     <input 
                                         type="text" name="plural" id="plural" 
-                                        class="<?php echo (isset($errors['cpta_plural_err'])) ? 'cpta-red-border' : '';?>"
-                                        value="<?php echo (isset($form_data['plural'])) ? $form_data['plural'] : $data['data'][0]->plural;?>" 
+                                        class="<?php echo (isset($errors['wpcpt_plural_err'])) ? 'wpcpt-red-border' : '';?>"
+                                        value="<?php echo (isset($form_data['plural'])) ? esc_attr($form_data['plural']) : esc_attr($data['data'][0]->plural);?>" 
                                         placeholder="(e.g. Services) Used in admin menu." />
-                                    <?php echo (isset($errors['cpta_plural_err'])) ? '<small>' . $errors['cpta_plural_err'] . '</small>' : ''; ?>
+                                    <?php echo (isset($errors['wpcpt_plural_err'])) ? '<small>' . esc_attr($errors['wpcpt_plural_err']) . '</small>' : ''; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -67,10 +69,10 @@
                                 <td>
                                     <input 
                                     type="text" name="singular" id="singular" 
-                                    class="<?php echo (isset($errors['cpta_singular_err'])) ? 'cpta-red-border' : '';?>" 
-                                    value="<?php echo (isset($form_data['singular'])) ? $form_data['singular'] : $data['data'][0]->singular;?>" 
+                                    class="<?php echo (isset($errors['wpcpt_singular_err'])) ? 'wpcpt-red-border' : '';?>" 
+                                    value="<?php echo (isset($form_data['singular'])) ? esc_attr($form_data['singular']) : esc_attr($data['data'][0]->singular);?>" 
                                     placeholder="(e.g. Service) Used where needed as single label." />
-                                    <?php echo (isset($errors['cpta_singular_err'])) ? '<small>' . $errors['cpta_singular_err'] . '</small>' : ''; ?>
+                                    <?php echo (isset($errors['wpcpt_singular_err'])) ? '<small>' . esc_attr($errors['wpcpt_singular_err']) . '</small>' : ''; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -78,7 +80,7 @@
                                 <td>
                                     <input 
                                         name="menu_icon" id="menu_icon" type="text"
-                                        value="<?php echo (isset($form_data['menu_icon'])) ? $form_data['menu_icon'] : $data['data'][0]->menu_icon;?>" 
+                                        value="<?php echo (isset($form_data['menu_icon'])) ? esc_attr($form_data['menu_icon']) : esc_attr($data['data'][0]->menu_icon);?>" 
                                         placeholder="Paste dashicon class here or choose from button below." />
                                         <input class="button dashicons-picker" type="button" value="Choose Icon" data-target="#menu_icon" />
                                     </td>
@@ -89,7 +91,7 @@
                                         <input 
                                         name="menu_position" id="menu_position" type="number" 
                                         min="5" max="100" 
-                                        value="<?php echo (isset($form_data['menu_position'])) ? $form_data['menu_position'] : $data['data'][0]->menu_position;?>" 
+                                        value="<?php echo (isset($form_data['menu_position'])) ? esc_attr($form_data['menu_position']) : esc_attr($data['data'][0]->menu_position);?>" 
                                         placeholder="Select from range of 5 to 100" />
                                 </td>
                             </tr>
@@ -161,8 +163,8 @@
                         </table>
                     </div>
                     <input type="hidden" name="action" value="handle_cpt_edit">
-                    <input type="hidden" name="id" value="<?php echo $single->id; ?>">
-                    <input type="hidden" name="old_slug" value="<?php echo $single->slug; ?>">
+                    <input type="hidden" name="id" value="<?php echo esc_attr($single->id); ?>">
+                    <input type="hidden" name="old_slug" value="<?php echo esc_attr($single->slug); ?>">
                    <?php wp_nonce_field( 'handle_cpt_edit_action', 'handle_cpt_edit_nonce' ); ?>
                 </form>
             </div>

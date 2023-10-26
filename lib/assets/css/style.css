@@ -1,86 +1,86 @@
-.cpta-post-box,
-.cpta-list-box {
+.wpcpt-post-box,
+.wpcpt-list-box {
     margin-top: 15px;
 }
 
-.cpta-post-box h2.ui-sortable-handle {
+.wpcpt-post-box h2.ui-sortable-handle {
     margin: 12px;
 }
 
-.cpta-post-box table {
+.wpcpt-post-box table {
     width: 100%;
 }
 
-.cpta-post-box table tr:first-child td {
+.wpcpt-post-box table tr:first-child td {
     padding: 0;
 }
 
-.cpta-post-box table tr td {
+.wpcpt-post-box table tr td {
     padding-top: 15px;
     vertical-align: top;
 }
 
-.cpta-post-box table tr td:first-child {
+.wpcpt-post-box table tr td:first-child {
     width: 20%;
 }
 
-.cpta-post-box table input[type=text],
-.cpta-post-box table input[type=number],
-.cpta-post-box table textarea {
+.wpcpt-post-box table input[type=text],
+.wpcpt-post-box table input[type=number],
+.wpcpt-post-box table textarea {
     width: 100%;
 }
 
-.cpta-post-box table input#menu_icon {
+.wpcpt-post-box table input#menu_icon {
     margin-bottom: 5px;
 }
 
-.cpta-post-box table tr td:first-child label {
+.wpcpt-post-box table tr td:first-child label {
     font-weight: 500;
 }
 
-.cpta-post-box table tr td small,
-.cpta-post-box table tr td:first-child label span {  
+.wpcpt-post-box table tr td small,
+.wpcpt-post-box table tr td:first-child label span {  
     color: red;
 }
 
-.cpta-post-box table tr td .cpta-red-border {  
+.wpcpt-post-box table tr td .wpcpt-red-border {  
     border-color: red;
 }
 
-.cpta-post-box table tr td .cpta-alert-success,
-.cpta-listing-page .cpta-alert-success {
+.wpcpt-post-box table tr td .wpcpt-alert-success,
+.wpcpt-listing-page .wpcpt-alert-success {
     background-color: #a9eea9;
     border: 1px solid green;
     padding: 10px;
     border-radius: 5px;
 }
 
-.cpta-post-box table tr td .cpta-alert-fail,
-.cpta-listing-page .cpta-alert-fail {
+.wpcpt-post-box table tr td .wpcpt-alert-fail,
+.wpcpt-listing-page .wpcpt-alert-fail {
     background-color: #dda8a8;
     border: 1px solid red;
     padding: 10px;
     border-radius: 5px;
 }
 
-.cpta-listing-page .alert {
+.wpcpt-listing-page .alert {
     margin-top: 10px;
 }
 
-.cpta-hidden {
+.wpcpt-hidden {
     display: none;
 }
 
-.cpta-list-box table th {
+.wpcpt-list-box table th {
     font-weight: 600;
 }
 
-.cpta-list-box table td.action a,
-.cpta-list-box table td.action form {
+.wpcpt-list-box table td.action a,
+.wpcpt-list-box table td.action form {
     display: inline-block;
 }
 
-.cpta-list-box table td.action form .dashicons {
+.wpcpt-list-box table td.action form .dashicons {
     cursor: pointer;
     color: #2271b1;
 }

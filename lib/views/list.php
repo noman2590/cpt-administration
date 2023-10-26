@@ -1,21 +1,24 @@
 <?php
-    $form_success = get_transient('cpta_form_success') ?? false;
-    $form_fail = get_transient('cpta_form_fail') ?? false;
-    delete_transient('cpta_form_success');
-    delete_transient('cpta_form_fail');
+
+    if ( ! defined( 'ABSPATH' ) ) exit;
+    
+    $form_success = get_transient('wpcpt_form_success') ?? false;
+    $form_fail = get_transient('wpcpt_form_fail') ?? false;
+    delete_transient('wpcpt_form_success');
+    delete_transient('wpcpt_form_fail');
 ?>
-<div class="wrap cpta-listing-page">
+<div class="wrap wpcpt-listing-page">
     <div class="wpbody-content">
         <h1 class="wp-heading-inline">CPT Listing</h1>
         <a href="<?php echo admin_url()?>admin.php?page=add-new-cpt" class="page-title-action">Add New Post Type</a>
         <hr class="wp-header-end" />
-        <div class="alert cpta-alert-success <?php echo ($form_success) ? '' : 'cpta-hidden' ?>">
-            <?php echo ($form_success) ? $form_success : '' ?>
+        <div class="alert wpcpt-alert-success <?php echo ($form_success) ? '' : 'wpcpt-hidden' ?>">
+            <?php echo ($form_success) ? esc_attr($form_success) : '' ?>
         </div>
-        <div class="alert cpta-alert-fail <?php echo ($form_fail) ? '' : 'cpta-hidden' ?>">
-            <?php echo ($form_fail) ? $form_fail : '' ?>
+        <div class="alert wpcpt-alert-fail <?php echo ($form_fail) ? '' : 'wpcpt-hidden' ?>">
+            <?php echo ($form_fail) ? esc_attr($form_fail) : '' ?>
         </div>
-        <div class="bg-white cpta-list-box">
+        <div class="bg-white wpcpt-list-box">
             <div class="ai1wm-left">
                 <table id="myTable" class="striped widefat">
                     <thead>
@@ -34,18 +37,18 @@
                         foreach ($data['data'] as $key=>$value){ 
                         ?>
                         <tr>
-                            <td><?php echo $value->slug ?></td>
-                            <td><?php echo $value->singular ?></td>
-                            <td><?php echo $value->plural ?></td>
-                            <td><?php echo $value->menu_position ?></td>
-                            <td><i class="dashicons <?php echo $value->menu_icon ?>"></i></td>
+                            <td><?php echo esc_attr($value->slug); ?></td>
+                            <td><?php echo esc_attr($value->singular); ?></td>
+                            <td><?php echo esc_attr($value->plural); ?></td>
+                            <td><?php echo esc_attr($value->menu_position); ?></td>
+                            <td><i class="dashicons <?php echo esc_attr($value->menu_icon); ?>"></i></td>
                             <td class="action">
-                                <a href="<?php echo admin_url()?>admin.php?page=edit-cpt&id=<?php echo $value->id ?>"><i class="dashicons dashicons-edit"></i></a>
+                                <a href="<?php echo admin_url()?>admin.php?page=edit-cpt&id=<?php echo esc_attr($value->id); ?>"><i class="dashicons dashicons-edit"></i></a>
                                 <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-                                    <i class="dashicons dashicons-trash cpta-delete-btn" title="Delete post type"></i>
+                                    <i class="dashicons dashicons-trash wpcpt-delete-btn" title="Delete post type"></i>
                                     <input type="hidden" name="action" value="delete_custom_posttype">
-                                    <input type="hidden" name="id" value="<?php echo $value->id; ?>">
-                                    <input type="hidden" name="slug" value="<?php echo $value->slug; ?>">
+                                    <input type="hidden" name="id" value="<?php echo esc_attr($value->id); ?>">
+                                    <input type="hidden" name="slug" value="<?php echo esc_attr($value->slug); ?>">
                                     <?php wp_nonce_field( 'delete_custom_posttype_action', 'delete_custom_posttype_nonce' ); ?>
                                 </form>
                             </td>

@@ -1,11 +1,12 @@
 <?php
-// if uninstall.php is not called by WordPress, die
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
     die;
 }
 
 global $wpdb;
-$table = $wpdb->prefix . 'cpta_post_types';
+$table = $wpdb->prefix . 'wpcpt_post_types';
 
 $results = $wpdb->get_results("SELECT * FROM $table");
 if( !empty($results) ) {
@@ -27,7 +28,6 @@ if( !empty($results) ) {
     }
 }
 
-// drop database table
 $wpdb->query( "DROP TABLE IF EXISTS {$table}" );
 
 ?>

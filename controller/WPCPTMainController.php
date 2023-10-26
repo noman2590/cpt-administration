@@ -1,24 +1,26 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
-class CPTAMainController
+class WPCPTMainController
 {
     public function __construct()
     {
-        register_activation_hook( CPTA_PLUGIN_BASENAME, array( $this, 'cpta_activation_hook' ));
-        add_action('init', array($this, 'create_custom_post_type'));
-        add_action('admin_menu', array( $this, 'cpta_admin_menu' ));
-        add_action('admin_menu', array( $this, 'cpta_register_add_new_page' ));
-        add_action('admin_menu', array( $this, 'cpta_register_edit_page' ));
-        add_action('admin_enqueue_scripts', array( $this, 'cpta_enqueue_admin_scripts'));
+        register_activation_hook( WPCPT_PLUGIN_BASENAME, array( $this, 'wpcpt_activation_hook' ));
+        add_action('init', array($this, 'wpcpt_create_custom_post_type'));
+        add_action('admin_menu', array( $this, 'wpcpt_admin_menu' ));
+        add_action('admin_menu', array( $this, 'wpcpt_register_add_new_page' ));
+        add_action('admin_menu', array( $this, 'wpcpt_register_edit_page' ));
+        add_action('admin_enqueue_scripts', array( $this, 'wpcpt_enqueue_admin_scripts'));
     }
 
-    public function cpta_activation_hook () {
+    public function wpcpt_activation_hook () {
         global $wpdb;
 
         $charset_collate = $wpdb->get_charset_collate();
-        $table_name = $wpdb->prefix . 'cpta_post_types';
+        $table_name = $wpdb->prefix . 'wpcpt_post_types';
         if ( $wpdb->get_var( $wpdb->prepare( "SHOW TABLES LIKE %s", $table_name ) ) !== $table_name ) {
             $sql = "CREATE TABLE  $table_name (
                 `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, 
@@ -37,57 +39,57 @@ class CPTAMainController
         }
     }
 
-    public static function cpta_set_query_vars ( $args )
+    public static function wpcpt_set_query_vars ( $args )
     {
         global $wp_query;
         $wp_query->set("data", $args);
 
     }
 
-    public function cpta_admin_menu() {
+    public function wpcpt_admin_menu() {
         add_menu_page(
             __('CPT List', 'cpt-list'),
             __('CPT List', 'cpt-list'),
             'manage_options',
             'cpt-list',
-            'CPTAListController::index',
+            'WPCPTListController::index',
             'dashicons-editor-table',
         );
     }
 
-    function cpta_register_add_new_page() {
+    function wpcpt_register_add_new_page() {
         add_submenu_page(
             'cpt-list',
             __('Add New Post Type', 'add-new-cpt'),
             __('Add New', 'add-new-cpt'),
             'manage_options',
             'add-new-cpt',
-            'CPTAListController::add_new_cpt'
+            'WPCPTListController::wpcpt_add_new_cpt'
         );
     }
 
-    function cpta_register_edit_page () {
+    function wpcpt_register_edit_page () {
         add_submenu_page(
             'cpt-list',
             __('Edit Post Type', 'edit-cpt'),
             __('Edit Post Type', 'edit-cpt'),
             'manage_options',
             'edit-cpt',
-            'CPTAListController::edit_cpt'
+            'WPCPTListController::wpcpt_edit_cpt'
         );
     }
 
-    function cpta_enqueue_admin_scripts() {
-        wp_enqueue_style( 'cpta-style', CPTA_PLUGIN_URL . '/lib/assets/css/style.css' );
-        wp_enqueue_script( 'cpta-js', CPTA_PLUGIN_URL . '/lib/assets/js/main.js' );
-        wp_enqueue_style( 'dashicons-css', CPTA_PLUGIN_URL . '/lib/assets/css/dashicons-picker.css' );
-        wp_enqueue_script( 'dashicons-picker-js', CPTA_PLUGIN_URL . '/lib/assets/js/dashicons-picker.js' );
+    function wpcpt_enqueue_admin_scripts() {
+        wp_enqueue_style( 'wpcpt-style', WPCPT_PLUGIN_URL . '/lib/assets/css/style.css' );
+        wp_enqueue_script( 'wpcpt-js', WPCPT_PLUGIN_URL . '/lib/assets/js/main.js' );
+        wp_enqueue_style( 'dashicons-css', WPCPT_PLUGIN_URL . '/lib/assets/css/dashicons-picker.css' );
+        wp_enqueue_script( 'dashicons-picker-js', WPCPT_PLUGIN_URL . '/lib/assets/js/dashicons-picker.js' );
     }
 
-    function create_custom_post_type() {
+    function wpcpt_create_custom_post_type() {
 
         global $wpdb;
-        $table = $wpdb->prefix . 'cpta_post_types';
+        $table = $wpdb->prefix . 'wpcpt_post_types';
 
         $results = $wpdb->get_results("SELECT * FROM $table");
         if( !empty($results) ) {
