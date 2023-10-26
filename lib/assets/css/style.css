@@ -1,86 +1,86 @@
-.wpcpt-post-box,
-.wpcpt-list-box {
+.mcpt-post-box,
+.mcpt-list-box {
     margin-top: 15px;
 }
 
-.wpcpt-post-box h2.ui-sortable-handle {
+.mcpt-post-box h2.ui-sortable-handle {
     margin: 12px;
 }
 
-.wpcpt-post-box table {
+.mcpt-post-box table {
     width: 100%;
 }
 
-.wpcpt-post-box table tr:first-child td {
+.mcpt-post-box table tr:first-child td {
     padding: 0;
 }
 
-.wpcpt-post-box table tr td {
+.mcpt-post-box table tr td {
     padding-top: 15px;
     vertical-align: top;
 }
 
-.wpcpt-post-box table tr td:first-child {
+.mcpt-post-box table tr td:first-child {
     width: 20%;
 }
 
-.wpcpt-post-box table input[type=text],
-.wpcpt-post-box table input[type=number],
-.wpcpt-post-box table textarea {
+.mcpt-post-box table input[type=text],
+.mcpt-post-box table input[type=number],
+.mcpt-post-box table textarea {
     width: 100%;
 }
 
-.wpcpt-post-box table input#menu_icon {
+.mcpt-post-box table input#menu_icon {
     margin-bottom: 5px;
 }
 
-.wpcpt-post-box table tr td:first-child label {
+.mcpt-post-box table tr td:first-child label {
     font-weight: 500;
 }
 
-.wpcpt-post-box table tr td small,
-.wpcpt-post-box table tr td:first-child label span {  
+.mcpt-post-box table tr td small,
+.mcpt-post-box table tr td:first-child label span {  
     color: red;
 }
 
-.wpcpt-post-box table tr td .wpcpt-red-border {  
+.mcpt-post-box table tr td .mcpt-red-border {  
     border-color: red;
 }
 
-.wpcpt-post-box table tr td .wpcpt-alert-success,
-.wpcpt-listing-page .wpcpt-alert-success {
+.mcpt-post-box table tr td .mcpt-alert-success,
+.mcpt-listing-page .mcpt-alert-success {
     background-color: #a9eea9;
     border: 1px solid green;
     padding: 10px;
     border-radius: 5px;
 }
 
-.wpcpt-post-box table tr td .wpcpt-alert-fail,
-.wpcpt-listing-page .wpcpt-alert-fail {
+.mcpt-post-box table tr td .mcpt-alert-fail,
+.mcpt-listing-page .mcpt-alert-fail {
     background-color: #dda8a8;
     border: 1px solid red;
     padding: 10px;
     border-radius: 5px;
 }
 
-.wpcpt-listing-page .alert {
+.mcpt-listing-page .alert {
     margin-top: 10px;
 }
 
-.wpcpt-hidden {
+.mcpt-hidden {
     display: none;
 }
 
-.wpcpt-list-box table th {
+.mcpt-list-box table th {
     font-weight: 600;
 }
 
-.wpcpt-list-box table td.action a,
-.wpcpt-list-box table td.action form {
+.mcpt-list-box table td.action a,
+.mcpt-list-box table td.action form {
     display: inline-block;
 }
 
-.wpcpt-list-box table td.action form .dashicons {
+.mcpt-list-box table td.action form .dashicons {
     cursor: pointer;
     color: #2271b1;
 }

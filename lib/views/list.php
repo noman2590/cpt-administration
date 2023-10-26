@@ -2,23 +2,23 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit;
     
-    $form_success = get_transient('wpcpt_form_success') ?? false;
-    $form_fail = get_transient('wpcpt_form_fail') ?? false;
-    delete_transient('wpcpt_form_success');
-    delete_transient('wpcpt_form_fail');
+    $form_success = get_transient('mcpt_form_success') ?? false;
+    $form_fail = get_transient('mcpt_form_fail') ?? false;
+    delete_transient('mcpt_form_success');
+    delete_transient('mcpt_form_fail');
 ?>
-<div class="wrap wpcpt-listing-page">
+<div class="wrap mcpt-listing-page">
     <div class="wpbody-content">
         <h1 class="wp-heading-inline">CPT Listing</h1>
         <a href="<?php echo admin_url()?>admin.php?page=add-new-cpt" class="page-title-action">Add New Post Type</a>
         <hr class="wp-header-end" />
-        <div class="alert wpcpt-alert-success <?php echo ($form_success) ? '' : 'wpcpt-hidden' ?>">
+        <div class="alert mcpt-alert-success <?php echo ($form_success) ? '' : 'mcpt-hidden' ?>">
             <?php echo ($form_success) ? esc_attr($form_success) : '' ?>
         </div>
-        <div class="alert wpcpt-alert-fail <?php echo ($form_fail) ? '' : 'wpcpt-hidden' ?>">
+        <div class="alert mcpt-alert-fail <?php echo ($form_fail) ? '' : 'mcpt-hidden' ?>">
             <?php echo ($form_fail) ? esc_attr($form_fail) : '' ?>
         </div>
-        <div class="bg-white wpcpt-list-box">
+        <div class="bg-white mcpt-list-box">
             <div class="ai1wm-left">
                 <table id="myTable" class="striped widefat">
                     <thead>
@@ -45,7 +45,7 @@
                             <td class="action">
                                 <a href="<?php echo admin_url()?>admin.php?page=edit-cpt&id=<?php echo esc_attr($value->id); ?>"><i class="dashicons dashicons-edit"></i></a>
                                 <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-                                    <i class="dashicons dashicons-trash wpcpt-delete-btn" title="Delete post type"></i>
+                                    <i class="dashicons dashicons-trash mcpt-delete-btn" title="Delete post type"></i>
                                     <input type="hidden" name="action" value="delete_custom_posttype">
                                     <input type="hidden" name="id" value="<?php echo esc_attr($value->id); ?>">
                                     <input type="hidden" name="slug" value="<?php echo esc_attr($value->slug); ?>">

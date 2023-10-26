@@ -6,7 +6,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 global $wpdb;
-$table = $wpdb->prefix . 'wpcpt_post_types';
+$table = $wpdb->prefix . 'mcpt_post_types';
 
 $results = $wpdb->get_results("SELECT * FROM $table");
 if( !empty($results) ) {

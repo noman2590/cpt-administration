@@ -1,6 +1,6 @@
-=== WP Custom Post Types ===
+=== My Custom Post Types ===
 Contributors: nomanakram2590
-Tags: custom post types, cpt, wp cpt, wp custom posy type
+Tags: custom post types, cpt, my cpt, my custom post type
 Requires at least: 5.0
 Requires PHP: 7.4
 Tested up to: 6.3
@@ -32,7 +32,7 @@ With the default configuration, this plugin, in itself, does not:
 
 == Installation ==
 
-1. Upload the entire `wp-custom-post-types` folder to the `/wp-content/plugins/` directory.
+1. Upload the entire `my-custom-post-types` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the **Plugins** screen (**Plugins > Installed Plugins**).
 3. You will find **CPT List** menu in your WordPress admin screen where you can manage custom post types.
 

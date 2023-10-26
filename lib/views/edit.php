@@ -2,15 +2,15 @@
 
     if ( ! defined( 'ABSPATH' ) ) exit;
 
-    $errors = get_transient('wpcpt_form_error') ?? array();
-    $form_data = get_transient('wpcpt_form_data') ?? array();
-    $form_success = get_transient('wpcpt_form_success') ?? false;
-    $form_fail = get_transient('wpcpt_form_fail') ?? false; 
+    $errors = get_transient('mcpt_form_error') ?? array();
+    $form_data = get_transient('mcpt_form_data') ?? array();
+    $form_success = get_transient('mcpt_form_success') ?? false;
+    $form_fail = get_transient('mcpt_form_fail') ?? false; 
 
-    delete_transient('wpcpt_form_error');
-    delete_transient('wpcpt_form_data');
-    delete_transient('wpcpt_form_fail');
-    delete_transient('wpcpt_form_success');
+    delete_transient('mcpt_form_error');
+    delete_transient('mcpt_form_data');
+    delete_transient('mcpt_form_fail');
+    delete_transient('mcpt_form_success');
 
     $single = $data['data'][0];
     $old_supports = (isset($single->supports)) ? explode(', ', $single->supports) : array();
@@ -23,7 +23,7 @@
 <div class="wrap">
     <h1 class="wp-heading-inline">Edit Post Type</h1>
     
-    <div class="postbox wpcpt-post-box">
+    <div class="postbox mcpt-post-box">
         <div class="postbox-header">
             <h2 class="ui-sortable-handle">Post Type Settings</h2>
         </div>
@@ -34,10 +34,10 @@
                         <table>
                             <tr>
                                 <td colspan="2">
-                                    <div class="alert wpcpt-alert-success <?php echo ($form_success) ? '' : 'wpcpt-hidden' ?>">
+                                    <div class="alert mcpt-alert-success <?php echo ($form_success) ? '' : 'mcpt-hidden' ?>">
                                         <?php echo ($form_success) ? esc_attr($form_success) : '' ?>
                                     </div>
-                                    <div class="alert wpcpt-alert-fail <?php echo ($form_fail) ? '' : 'wpcpt-hidden' ?>">
+                                    <div class="alert mcpt-alert-fail <?php echo ($form_fail) ? '' : 'mcpt-hidden' ?>">
                                         <?php echo ($form_fail) ? esc_attr($form_fail) : '' ?>
                                     </div>
                                 </td>
@@ -47,10 +47,10 @@
                                 <td>
                                     <input 
                                         type="text" name="slug" id="slug" 
-                                        class="<?php echo (isset($errors['wpcpt_slug_err'])) ? 'wpcpt-red-border' : '';?>" 
+                                        class="<?php echo (isset($errors['mcpt_slug_err'])) ? 'mcpt-red-border' : '';?>" 
                                         value="<?php echo (isset($form_data['slug'])) ? esc_attr($form_data['slug']) : esc_attr($data['data'][0]->slug);?>" 
                                         placeholder="The post type name/slug. Used for various queries." />
-                                    <?php echo (isset($errors['wpcpt_slug_err'])) ? '<small>' . esc_attr($errors['wpcpt_slug_err']) . '</small>' : ''; ?>
+                                    <?php echo (isset($errors['mcpt_slug_err'])) ? '<small>' . esc_attr($errors['mcpt_slug_err']) . '</small>' : ''; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -58,10 +58,10 @@
                                 <td>
                                     <input 
                                         type="text" name="plural" id="plural" 
-                                        class="<?php echo (isset($errors['wpcpt_plural_err'])) ? 'wpcpt-red-border' : '';?>"
+                                        class="<?php echo (isset($errors['mcpt_plural_err'])) ? 'mcpt-red-border' : '';?>"
                                         value="<?php echo (isset($form_data['plural'])) ? esc_attr($form_data['plural']) : esc_attr($data['data'][0]->plural);?>" 
                                         placeholder="(e.g. Services) Used in admin menu." />
-                                    <?php echo (isset($errors['wpcpt_plural_err'])) ? '<small>' . esc_attr($errors['wpcpt_plural_err']) . '</small>' : ''; ?>
+                                    <?php echo (isset($errors['mcpt_plural_err'])) ? '<small>' . esc_attr($errors['mcpt_plural_err']) . '</small>' : ''; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -69,10 +69,10 @@
                                 <td>
                                     <input 
                                     type="text" name="singular" id="singular" 
-                                    class="<?php echo (isset($errors['wpcpt_singular_err'])) ? 'wpcpt-red-border' : '';?>" 
+                                    class="<?php echo (isset($errors['mcpt_singular_err'])) ? 'mcpt-red-border' : '';?>" 
                                     value="<?php echo (isset($form_data['singular'])) ? esc_attr($form_data['singular']) : esc_attr($data['data'][0]->singular);?>" 
                                     placeholder="(e.g. Service) Used where needed as single label." />
-                                    <?php echo (isset($errors['wpcpt_singular_err'])) ? '<small>' . esc_attr($errors['wpcpt_singular_err']) . '</small>' : ''; ?>
+                                    <?php echo (isset($errors['mcpt_singular_err'])) ? '<small>' . esc_attr($errors['mcpt_singular_err']) . '</small>' : ''; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -98,7 +98,6 @@
                             <tr>
                                 <td>
                                     <label for="supports">Supports</label>
-                                    <p>Check the 'None' option to set 'supports' to false.</p>
                                 </td>
                                 <td>
                                     <fieldset>
@@ -134,9 +133,6 @@
                                         <br />
                                         <input type="checkbox" id="post_formats" value="post_formats" name="supports[]" <?php echo (($supports) && in_array('post_formats', $supports)) ? 'checked' : '';?> /> 
                                         <label for="post_formats">Post Formats</label>
-                                        <br />
-                                        <input type="checkbox" id="none" value="none" name="supports[]" <?php echo (($supports) && in_array('none', $supports)) ? 'checked' : '';?> /> 
-                                        <label for="none">None</label>
                                         <br />
                                     </fieldset>
                                 </td>

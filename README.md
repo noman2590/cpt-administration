@@ -1,7 +1,7 @@
-WP Custom Post Types 
+My Custom Post Types 
 ====================
 
-This is the development repository for WP Custom Post Types , a WordPress plugin that lets you manage custom post types for your website. A copy of the plugin package is downloadable from the [WordPress.org Plugin Directory](https://wordpress.org/plugins/wp-custom-post-types/).
+This is the development repository for My Custom Post Types , a WordPress plugin that lets you manage custom post types for your website. A copy of the plugin package is downloadable from the [WordPress.org Plugin Directory](https://wordpress.org/plugins/my-custom-post-types/).
 
 
 License
@@ -13,7 +13,7 @@ This plugin is released under the GNU General Public License Version 2 (GPLv2).
 Basic Usage
 -----------
 
-Install the WP Custom Post Types plugin through the **Add Plugins** screen (**Plugins > Add New**). After activating the plugin, the **CPT List** menu will appear in the left sidebar. You can see the custom post type entries by clicking that menu. You can simply add a new custom post type and choose the support u need for it. You can also edit and delete a custom post type as well.
+Install the My Custom Post Types plugin through the **Add Plugins** screen (**Plugins > Add New**). After activating the plugin, the **CPT List** menu will appear in the left sidebar. You can see the custom post type entries by clicking that menu. You can simply add a new custom post type and choose the support u need for it. You can also edit and delete a custom post type as well.
 
 
 Version
