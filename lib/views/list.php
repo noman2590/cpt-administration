@@ -12,10 +12,10 @@
         <h1 class="wp-heading-inline">CPT Listing</h1>
         <a href="<?php echo admin_url()?>admin.php?page=add-new-cpt" class="page-title-action">Add New Post Type</a>
         <hr class="wp-header-end" />
-        <div class="notice notice-success is-dismissible <?php echo ($form_success) ? '' : 'mcpt-hidden' ?>">
+        <div class="notice notice-success notice-alt is-dismissible <?php echo ($form_success) ? '' : 'mcpt-hidden' ?>">
             <p><?php echo ($form_success) ? esc_attr($form_success) : '' ?></p>
         </div>
-        <div class="notice notice-error is-dismissible <?php echo ($form_fail) ? '' : 'mcpt-hidden' ?>">
+        <div class="notice notice-error notice-alt is-dismissible <?php echo ($form_fail) ? '' : 'mcpt-hidden' ?>">
             <p><?php echo ($form_fail) ? esc_attr($form_fail) : '' ?></p>
         </div>
         <div class="bg-white mcpt-list-box">
